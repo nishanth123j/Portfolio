@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nishanth's Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #4cc9f0;
+      --accent: #f72585;
+      --dark: #121826;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --card-bg: #ffffff;
+      --text: #343a40;
+      --transition: all 0.3s ease;
+    }
+
+    .dark-mode {
+      --primary: #5e72e4;
+      --secondary: #11cdef;
+      --accent: #f5365c;
+      --dark: #0d1117;
+      --light: #161b22;
+      --gray: #8b949e;
+      --card-bg: #1e2732;
+      --text: #e6edf3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+      transition: var(--transition);
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.2rem 0;
+      transition: var(--transition);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: var(--transition);
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      background: var(--card-bg);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .theme-icon {
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      text-align: center;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      color: var(--gray);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.2rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      font-size: 1.1rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      margin-left: 1rem;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about-content {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .project-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      color: var(--primary);
+    }
+
+    .project-card p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .project-status {
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      background: rgba(67, 97, 238, 0.1);
+      color: var(--primary);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Achievements Section */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .achievement-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .achievement-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .achievement-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .achievement-card p {
+      color: var(--gray);
+    }
+
+    /* Contact Section */
+    .contact-container {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-info {
+      margin-bottom: 3rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 1.5rem;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px);
+      background: var(--accent);
+    }
+
+    /* Resume Section */
+    .resume-container {
+      text-align: center;
+      padding: 3rem;
+      background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(76, 201, 240, 0.05));
+      border-radius: 16px;
+      margin-top: 2rem;
+      max-width: 600px;
+      margin: 2rem auto 0;
+    }
+
+    .resume-btn {
+      margin-top: 1.5rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      background: var(--card-bg);
+      color: var(--text);
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: var(--text);
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+      
+      .btn-outline {
+        margin-left: 0;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">Portfolio</div>
+        
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#resume" class="active">Resume</a></li>
+          </ul>
+        </nav>
+        
+        <div class="theme-toggle" id="themeToggle">
+          <span class="theme-icon">
+            <i class="fas fa-moon"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Hi, I'm <span>Nishanth</span></h1>
+        <p>A Front-End Developer and UI/UX Designer passionate about crafting visually appealing, user-friendly digital experiences.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn">View My Work</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <p>I'm Nishanth, a passionate front-end developer and UI/UX designer with expertise in creating modern, responsive web applications. I specialize in HTML, CSS, JavaScript, and modern frameworks while focusing on creating intuitive user experiences.</p>
+        <p>I've worked on multiple UI/UX projects in Figma and developed websites using modern technologies. I'm dedicated to improving my coding skills and broadening my technical expertise. Currently, I have completed an HTML and CSS course on GUVI and am pursuing a course in Python and Data Structures to enhance my backend skills.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">My Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>HTML/CSS Portfolio</h3>
+          <p>Created a personal website using only HTML and CSS to showcase my work with a clean, responsive design that works across all devices.</p>
+          <span class="project-status">Completed</span>
+        </div>
+        <div class="project-card">
+          <h3>JavaScript Calculator</h3>
+          <p>A simple calculator that performs basic operations using vanilla JS with a sleek UI and keyboard support for enhanced usability.</p>
+          <span class="project-status">Completed</span>
+        </div>
+        <div class="project-card">
+          <h3>E-commerce Platform</h3>
+          <p>Currently developing a full-featured e-commerce platform with React, Node.js, and MongoDB. Includes product listings, cart functionality, and secure payments.</p>
+          <span class="project-status">In Progress</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <div class="container">
+      <h2 class="section-title">Achievements</h2>
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <div class="achievement-icon">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <h3>HTML & CSS Certified</h3>
+          <p>Successfully completed HTML and CSS training from GUVI platform with top grades and practical project experience.</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>Python & Data Structures</h3>
+          <p>Currently pursuing an advanced course in Python and Data Structures to enhance backend development skills and algorithmic thinking.</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h3>UI Design Challenge Winner</h3>
+          <p>Won first place in a regional UI design challenge for creating an innovative healthcare app interface with exceptional usability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <p>Have a project in mind or want to connect? Feel free to reach out!</p>
+          <p style="margin-top: 1.5rem; font-size: 1.2rem;">
+            <i class="fas fa-envelope"></i> nishanth123j@gmail.com
+          </p>
+        </div>
+        
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/nishanth-r-4b9a17349/" class="social-link" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://github.com/nishanth123j" class="social-link" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://leetcode.com/u/nishanth123j/" class="social-link" target="_blank">
+            <i class="fas fa-code"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume">
+    <div class="container">
+      <h2 class="section-title">My Resume</h2>
+      <div class="resume-container">
+        <p>Download my resume to learn more about my professional experience and qualifications.</p>
+        <a href="#" class="btn resume-btn" id="resumeBtn">
+          <i class="fas fa-download"></i> Download Resume
+        </a>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
+          <i class="fas fa-file-pdf"></i> PDF Format (1.2MB) | Last Updated: July 2025
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="logo" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Nishanth</div>
+      <p>Frontend Developer & UI/UX Designer</p>
+      <p style="margin-top: 1.5rem;">© 2025 Nishanth. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // DOM Elements
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+    const resumeBtn = document.getElementById('resumeBtn');
+    const navLinks = document.querySelectorAll('nav a');
+
+    // Dark Mode Toggle
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      
+      if (document.body.classList.contains('dark-mode')) {
+        themeIcon.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        themeIcon.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    });
+
+    // Resume Button Functionality
+    resumeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Create a temporary link to simulate download
+      const link = document.createElement('a');
+      link.href = '#';
+      link.download = 'Nishanth_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Show success message
+      alert('Resume download started!');
+    });
+
+    // Highlight active nav link on scroll
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const scrollPosition = window.scrollY;
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${sectionId}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    });
+
+    // Animation on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      section.style.opacity = 0;
+      section.style.transform = 'translateY(40px)';
+      section.style.transition = 'all 0.8s ease-out';
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
